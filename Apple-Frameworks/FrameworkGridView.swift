@@ -35,6 +35,7 @@ struct FrameworkGridView: View {
                                     isShowingDetailView: $viewModel.isShowingDetailView)
             }
         }
+        .navigationViewStyle(.stack)
     }
 }
 

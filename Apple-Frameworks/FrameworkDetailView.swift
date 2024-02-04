@@ -12,40 +12,42 @@ struct FrameworkDetailView: View {
     @Binding var isShowingDetailView: Bool
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Button {
-                    isShowingDetailView = false
-                } label: {
-                    Image(systemName: "xmark")
-                        .foregroundColor(Color(.label))
-                        .imageScale(.large)
-                        .frame(width: 44, height: 44)
-                }
-            }
-            .padding()
-            
-            Spacer()
-            FrameworkItemView(framework: framework)
-            Text(framework.description)
-                .font(.body)
-                .padding(32)
-            
-            Button {
-                if let url = URL(string: framework.urlString) {
-                    if UIApplication.shared.canOpenURL(url) {
-                        UIApplication.shared.open(url)
+        ScrollView {
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        isShowingDetailView = false
+                    } label: {
+                        Image(systemName: "xmark")
+                            .foregroundColor(Color(.label))
+                            .imageScale(.large)
+                            .frame(width: 44, height: 44)
                     }
                 }
-            } label: {
-                Text("Learn more")
-                    .font(.title2)
-                    .fontWeight(.semibold)
+                .padding()
+                
+                Spacer()
+                FrameworkItemView(framework: framework)
+                Text(framework.description)
+                    .font(.body)
+                    .padding(32)
+                
+                Button {
+                    if let url = URL(string: framework.urlString) {
+                        if UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url)
+                        }
+                    }
+                } label: {
+                    Text("Learn more")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                }
+                .buttonStyle(.bordered)
+                .padding()
+                .tint(.orange)
             }
-            .buttonStyle(.bordered)
-            .padding()
-            .tint(.orange)
         }
     }
 }
